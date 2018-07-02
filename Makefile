@@ -45,6 +45,10 @@ build/%.o: src/%.cc ${ZMQ} src/meta.pb.h
 src/%.pb.cc src/%.pb.h : src/%.proto ${PROTOBUF}
 	$(PROTOC) --cpp_out=./src --proto_path=./src $<
 
+test_van:tests/van_test.cc
+	$(CXX) tests/van_test.cc -g -o test_van -std=c++0x -L/home/tusimple/junechen/machinelearning/jc_mxnet/ps-lite/deps/lib -lps -lprotobuf-lite -lzmq -pthread $(INCPATH) $(CFLAGS) -Lbuild
+
+
 -include build/*.d
 -include build/*/*.d
 
